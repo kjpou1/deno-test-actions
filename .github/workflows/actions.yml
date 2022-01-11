@@ -6,6 +6,10 @@ jobs:
   run-gihub-actions:
     runs-on: ubuntu-latest
     steps:
+      - name: List Files
+        run: |
+          pwd
+          ls
       - name: Simple JS Actions
         id: js-greet
         uses: actions/hello-world-javascript-action@v1.1
