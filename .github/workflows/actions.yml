@@ -1,0 +1,22 @@
+name: Actions Workflow
+
+on: [push]
+
+jobs:
+  run-gihub-actions:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Simple JS Actions
+        id: js-greet
+        uses: actions/hello-world-javascript-action@v1.1
+        with:
+          who-to-greet: Hic Sunt Dracones
+      - name: Log JS Greeting Time
+        run: echo "${{steps.js-greet.outputs.time}}"
+      - name: Simple Docker Actions
+        id: docker-greet
+        uses: actions/hello-world-docker-action@v1
+        with:
+          who-to-greet: Hic Sunt Docker Dracones
+      - name: Log Docker Greeting Time
+        run: echo "${{steps.docker-greet.outputs.time}}"
