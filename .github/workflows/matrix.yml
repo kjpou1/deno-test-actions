@@ -5,7 +5,7 @@ jobs:
   node-version:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, window-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
         node_version: [6,8,10]
       #max-parallel: 2
     runs-on: ${{ matrix.os }}
@@ -18,7 +18,7 @@ jobs:
   deno-version:
     strategy:
       matrix:
-        os: [macos-latest, ubuntu-latest, window-latest]
+        os: [macos-latest, ubuntu-latest, windows-latest]
         deno_version: [1.17.0, 1.17.1]
       #max-parallel: 2
     runs-on: ${{ matrix.os }}
