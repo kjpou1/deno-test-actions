@@ -1,0 +1,11 @@
+name: Matrix
+on: push
+
+jobs:
+  node-version:
+    steps:
+      - name: Log node version
+        run: node -v
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 6
