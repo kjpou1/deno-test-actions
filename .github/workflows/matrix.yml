@@ -12,7 +12,7 @@ jobs:
     steps:
       - name: Log node version
         run: node -v
-      - uses: actions/setup-node@v1
+      - uses: denoland/setup-deno@v1
         with:
           node-version: ${{ matrix.node_version }}
   deno-version:
