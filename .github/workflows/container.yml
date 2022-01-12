@@ -11,3 +11,12 @@ jobs:
         run: |
           node -v
           cat /etc/os-release
+  deno-docker:
+    runs-on: ubuntu-latest
+    container: 
+      image: deno:alpine-1.17.2
+    steps:
+      - name: Log Deno version
+        run: |
+          deno --version
+          cat /etc/os-release          
