@@ -24,7 +24,7 @@ jobs:
     runs-on: ${{ matrix.os }}
     steps:
       - name: Use Deno Version ${{ matrix.deno_version }}
-        uses: denolib/setup-deno@v1
+        uses: denolib/setup-deno@v2
         with:
           deno-version: ${{ matrix.deno_version }}
       - name: Log deno version
