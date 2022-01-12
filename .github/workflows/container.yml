@@ -25,4 +25,10 @@ jobs:
       - name: Log Deno version
         run: |
           deno --version
-          cat /etc/os-release          
+          cat /etc/os-release
+      - uses: actions/checkout@v2.4.0
+      - name: Run a ascript
+        uses: docker://denoland/deno:alpine-1.17.1
+        with:
+          entrypoint: ./script.sh
+          args: "some string"      
