@@ -50,3 +50,10 @@ jobs:
           who-to-greet: "Dracones"
       - run: | 
           echo "Time: ${{steps.hello.outputs.time}}"
+      - name: Custom HicSunt from docker
+        uses: ./.github/actions/hicsunt-docker
+        id: hello-docker
+        with:
+          who-to-greet: "Dracones"
+      - run: | 
+          echo "Time: ${{steps.hello-docker.outputs.time}}"

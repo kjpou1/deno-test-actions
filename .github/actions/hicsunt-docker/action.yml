@@ -1,0 +1,16 @@
+name: Hic Sunt
+author: Kenneth Pouncey
+description: Some description
+inputs:
+  who-to-greet:
+    description: "Who to greet"
+    required: true
+    default: Dracones
+outputs:
+  time:
+    description: 'The furnace time'
+runs:
+  using: "docker"
+  image: "Dockerfile"
+  entrypoint: "entrypoint.sh"
+  args: ["asdf"]
