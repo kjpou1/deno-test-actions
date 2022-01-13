@@ -43,3 +43,10 @@ jobs:
           who-to-greet: Hic Sunt Docker Dracones
       - name: Log Docker Greeting Time
         run: echo "${{steps.docker-greet.outputs.time}}"
+      - name: Custom HicSunt
+        uses: ./.github/actions/hicsunt
+        id: hello
+        with:
+          who-to-greet: "Dracones"
+      - run: | 
+          echo "Time: ${{steps.hello.output.time}}"
