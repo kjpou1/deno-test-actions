@@ -42,3 +42,8 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+      - name: Define variables
+        run: echo "short > ${GITHUB_SHORT}"
+        env:
+          # var logic
+          GITHUB_SHORT: ${git rev-parse --short HEAD}
