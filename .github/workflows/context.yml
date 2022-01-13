@@ -46,4 +46,4 @@ jobs:
         run: echo "short > ${GITHUB_SHORT}"
         env:
           # var logic
-          GITHUB_SHORT: $(git rev-parse --short HEAD)
+          GITHUB_SHORT: ${{ github.sha }}
