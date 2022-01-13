@@ -49,4 +49,4 @@ jobs:
         with:
           who-to-greet: "Dracones"
       - run: | 
-          echo "Time: ${{steps.hello.output.time}}"
+          echo "Time: ${{steps.hello.outputs.time}}"
