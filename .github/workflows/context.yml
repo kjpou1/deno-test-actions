@@ -42,6 +42,12 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+  variables:
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push'
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2.4.0
       - name: Define variables
         run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         # env:
