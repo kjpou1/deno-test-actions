@@ -55,6 +55,7 @@ jobs:
         #   GITHUB_SHORT: ${GITHUB_SHA::8}
       - name: Dump short SHA
         env:
-          BUNDLE_NAME: ${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, ${SHORT_SHA}) }}
+          #${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, hashFiles(format('env/{0}_environment.yml', matrix.stack))) }}
+          BUNDLE_NAME: ${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, SHORT_SHA) }}
         run: echo "$BUNDLE_NAME"
 
