@@ -8452,7 +8452,7 @@ try {
     console.log(`Hic Sunt ${name}`)
 
     const time = new Date();
-    core.setOutput("time", time.toTimetring())
+    core.setOutput("time", time.toTimeString())
 
     console.log(JSON.stringify(github, null, '\t'));
 
