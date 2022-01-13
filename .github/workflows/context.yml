@@ -63,7 +63,7 @@ jobs:
       #       ) }}        
       - name: shortness
         id: shortness
-        run: echo "::set-output name=short::$(SHORT_SHA)"      
+        run: echo "::set-output name=short::env.SHORT_SHA"      
       - name: Dump short SHA
         env:
           #${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, hashFiles(format('env/{0}_environment.yml', matrix.stack))) }}
