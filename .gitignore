@@ -105,3 +105,6 @@ dist
 
 # secrets file
 secret.json
+
+# except for actions build
+!.github/actions/hicsunt/dist/
