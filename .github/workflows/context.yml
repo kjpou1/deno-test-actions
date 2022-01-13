@@ -61,6 +61,6 @@ jobs:
             'Spam is short for {0} and is made from {1} by {2}',
             runner.os,
             matrix.stack,
-            SHORT_SHA) }}
+            "${SHORT_SHA}") }}
         run: echo "$BUNDLE_NAME"
 
