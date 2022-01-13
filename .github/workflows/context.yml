@@ -48,10 +48,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v2.4.0
-      - name: Define variables
+      - name: Define short variable
         run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
         # env:
         #   # var logic
         #   GITHUB_SHORT: ${GITHUB_SHA::8}
       - name: Dump short SHA
-        run: echo "$SHORT_SHA"
+        env:
+          BUNDLE_NAME: ${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, $SHORT_SHA }}
+        run: echo "$BUNDLE_NAME"
+
