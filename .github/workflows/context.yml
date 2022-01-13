@@ -61,11 +61,14 @@ jobs:
       #         'pork shoulder',
       #         'Hormel'
       #       ) }}        
+      - name: shortness
+        id: shortness
+        run: echo "::set-output name=short::$(SHIRT_SHA)"      
       - name: Dump short SHA
         env:
           #${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, hashFiles(format('env/{0}_environment.yml', matrix.stack))) }}
           #BUNDLE_NAME: ${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, ${{SHORT_SHA}}) }}
-          BUNDLE_NAME: "Hic sunt -$SHORT_SHA--"
+          BUNDLE_NAME: "Hic sunt -${{steps.shortness.outputs.short}}--"
           BUNDLE_NAME2: ${{ format(
             'Spam is short for {0} and is made from {1} by {2}',
             runner.os,
