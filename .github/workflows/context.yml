@@ -43,7 +43,9 @@ jobs:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
       - name: Define variables
-        run: echo "short > ${GITHUB_SHORT}"
-        env:
-          # var logic
-          GITHUB_SHORT: ${{ github.sha::7 }}
+        run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
+        # env:
+        #   # var logic
+        #   GITHUB_SHORT: ${GITHUB_SHA::8}
+      - name: Dump short SHA
+        run: echo "$SHORT_SHA"
