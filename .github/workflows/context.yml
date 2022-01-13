@@ -59,7 +59,7 @@ jobs:
           #BUNDLE_NAME: ${{ format('{0}-conda-stage-{1}-{2}', runner.os, matrix.stack, ${{SHORT_SHA}}) }}
           BUNDLE_NAME: ${{ format(
             'Spam is short for {0} and is made from {1} by {2}',
-            'spiced ham',
+            runner.os,
             'pork shoulder',
             'Hormel') }}
         run: echo "$BUNDLE_NAME"
