@@ -8,6 +8,10 @@ on:
 jobs:
   docker:
     runs-on: ubuntu-latest
+    env:
+      working_directory: ./api
+      DOCKER_PROJECT_NAME: ${{ github.event.repository.name }}
+      DOCKER_PROJECT_NAME_API: ${{ github.event.repository.name }}_api
     steps:
       - name: Checkout
         uses: actions/checkout@v2
@@ -25,11 +29,11 @@ jobs:
       - name: Build docker image
         run: |
           cd api
-          docker image build -t deno-test-actions:$SHORT_SHA .
+          docker image build -t env.DOCKER_PROJECT_NAME_API:$SHORT_SHA .
           
-      - name: Push to docker hub
-        run: |
-          docker tag ${{ github.event.repository.name }}:${{ env.SHORT_SHA }} ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:${{ env.SHORT_SHA }}
-          docker tag ${{ github.event.repository.name }}:${{ env.SHORT_SHA }} ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:latest
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:${{ env.SHORT_SHA }}
-          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:latest
+      # - name: Push to docker hub
+      #   run: |
+      #     docker tag ${{ env.DOCKER_PROJECT_NAME_API }}:${{ env.SHORT_SHA }} ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_PROJECT_NAME_API }}:${{ env.SHORT_SHA }}
+      #     docker tag ${{ env.DOCKER_PROJECT_NAME_API }}:${{ env.SHORT_SHA }} ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_PROJECT_NAME_API }}:latest
+      #     docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_PROJECT_NAME_API }}:${{ env.SHORT_SHA }}
+      #     docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ env.DOCKER_PROJECT_NAME_API }}:latest
