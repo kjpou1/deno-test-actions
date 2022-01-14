@@ -26,3 +26,7 @@ jobs:
         run: |
           cd api
           docker image build -t deno-test-actions:$SHORT_SHA .
+          
+      - name: Push to docker hub
+        run: |
+          docker push ${{ secrets.DOCKER_HUB_USERNAME }}/${{ github.event.repository.name }}:$SHORT_SHA
