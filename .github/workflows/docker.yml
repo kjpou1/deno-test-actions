@@ -12,8 +12,17 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         
+      - name: Define short sha variable
+        run: echo "SHORT_SHA=`git rev-parse --short HEAD`" >> $GITHUB_ENV
+        
+      # Signin to DockerHub
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
           username: ${{ secrets.DOCKER_HUB_USERNAME }}
           password: ${{ secrets.DOCKER_HUB_ACCESS_TOKEN }}
+      
+      - name: Build docker image
+        run: |
+          cd api
+          docker image build -t deno-test-actions:$SHORT_SHA .
