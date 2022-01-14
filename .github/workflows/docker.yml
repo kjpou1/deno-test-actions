@@ -9,7 +9,7 @@ jobs:
   docker:
     runs-on: ubuntu-latest
     env:
-      WORKING_DIRECTORY: ./api
+      WORKING_DIRECTORY_API: ./api
       DOCKER_PROJECT_NAME: ${{ github.event.repository.name }}
       DOCKER_PROJECT_NAME_API: ${{ github.event.repository.name }}_api
     steps:
@@ -28,7 +28,7 @@ jobs:
       
       - name: Build docker image
         run: |
-          cd api
+          cd ${{ env.WORKING_DIRECTORY_API }}
           docker image build -t ${{ env.DOCKER_PROJECT_NAME_API }}:$SHORT_SHA .
           
       # - name: Push to docker hub
