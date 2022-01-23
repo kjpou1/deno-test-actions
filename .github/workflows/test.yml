@@ -1,29 +1,33 @@
-name: Test Deno Module
+name: ci
 
 on:
   push:
-    branches: [main]
+    branches: [master]
   pull_request:
-    branches: [main]
+    branches: [master]
 
 jobs:
-  test:
-    runs-on: ubuntu-latest
-
+  build:
     strategy:
       matrix:
-        deno-version: [1.17.1]
+        os: [ubuntu-latest] # [macos-latest, ubuntu-latest, windows-latest]
+        #deno_version: [1.17.1, 1.17.2]
+        deno_version: [~1.17, ~1.18]
+    runs-on: ${{ matrix.os }}
 
     steps:
-      - name: Git Checkout Deno Module
-        uses: actions/checkout@v2
-      - name: Use Deno Version ${{ matrix.deno-version }}
-        uses: denolib/setup-deno@v2
+      - uses: actions/checkout@v2
+      
+      # Setup deno version
+      - name: Use Deno Version ${{ matrix.deno_version }}
+        uses: denoland/setup-deno@v1
         with:
-          deno-version: ${{ matrix.deno-version }}
-      - name: Lint Deno Module
-        run: deno fmt --check
-      - name: Build Deno Module
-        run: deno cache --reload ./src/mod.ts
-      - name: Test Deno Module
-        run: deno test --allow-none
+          deno-version: ${{ matrix.deno_version }}
+
+      - name: Test
+        env:
+          HOSTNAME: smtp.gmail.com
+          MAIL_USER: ${{ secrets.MAIL_USER }}
+          MAIL_PASS: ${{ secrets.MAIL_PASS }}
+          MAIL_TO_USER: ${{ secrets.MAIL_USER }}
+        run: deno run --allow-net --allow-env ./test.ts
